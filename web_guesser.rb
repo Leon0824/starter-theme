@@ -1,7 +1,8 @@
 require 'sinatra'
 require 'sinatra/reloader'
 
-SECRET_NUMBER = rand(100)
+SECRET_NUMBER = rand(50)
+@@guess_limit = 5
 $background_color = ""
 
 def check_guess(guess)
@@ -29,5 +30,11 @@ end
 get '/' do
   guess = params["guess"]
   message = check_guess(guess)
+  @@guess_limit -= 1
+  if @@guess_limit == 0
+    SECRET_NUMBER = rand(50)
+    @@guess_limit = 5
+    message = "You've lost and a new number has been generated"
+  end
   erb :index, :locals => {:message => message, :background_color => $background_color}
 end
