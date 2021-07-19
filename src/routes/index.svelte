@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>Clip - Paste, Vote, Talk</title>
 </svelte:head>
 
 <section>
